@@ -257,10 +257,6 @@ workflows:
           filters:
             branches:
               ignore: client-java-release-branch
-      - test-behaviour-graql-language:
-          filters:
-            branches:
-              ignore: client-java-release-branch
 #      - test-behaviour-graql-reasoner:
 #          filters:
 #            branches:
