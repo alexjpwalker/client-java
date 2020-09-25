@@ -41,7 +41,7 @@ grakn_test(
         "@graknlabs_behaviour//graql/language:delete.feature",
     ],
     grakn_artifact = "@graknlabs_grakn_core_artifact//file",
-    size = "large",
+    size = "small",
     visibility = ["//visibility:public"],
 )
 

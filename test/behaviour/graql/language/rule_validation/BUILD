@@ -24,9 +24,9 @@ load("@graknlabs_common//test/server:rules.bzl", "grakn_test")
 grakn_test(
     name = "test-core",
     srcs = [
-        "MatchTest.java",
+        "RuleValidationTest.java",
     ],
-    test_class = "grakn.client.test.behaviour.graql.language.match.MatchTest",
+    test_class = "grakn.client.test.behaviour.graql.language.rule_validation.RuleValidationTest",
     deps = [
         # External dependencies from Maven
         "@maven//:io_cucumber_cucumber_junit",
@@ -38,7 +38,7 @@ grakn_test(
         "//test/behaviour/config:parameters",
     ],
     data = [
-        "@graknlabs_behaviour//graql/language:match.feature",
+        "@graknlabs_behaviour//graql/language:rule-validation.feature",
     ],
     grakn_artifact = "@graknlabs_grakn_core_artifact//file",
     size = "small",
