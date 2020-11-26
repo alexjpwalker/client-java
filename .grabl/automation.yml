@@ -1,0 +1,8 @@
+build:
+  correctness:
+    build:
+      machine: graknlabs-ubuntu-20.04
+      script: |
+        cd examples
+        bazel build :hello-world-client :hello-world-server
+        sleep 1800
