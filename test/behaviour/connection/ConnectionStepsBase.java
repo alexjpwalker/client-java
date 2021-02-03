@@ -73,9 +73,12 @@ public abstract class ConnectionStepsBase {
     }
 
     void after() {
+        System.out.println("Before Session.close");
         sessions.parallelStream().forEach(GraknClient.Session::close);
         sessions.clear();
+        System.out.println("After Session.close");
 
+        System.out.println("Before SessionsParallel.close");
         Stream<CompletableFuture<Void>> closures = sessionsParallel
                 .stream().map(futureSession -> futureSession.thenApplyAsync(session -> {
                     session.close();
@@ -83,12 +86,17 @@ public abstract class ConnectionStepsBase {
                 }));
         CompletableFuture.allOf(closures.toArray(CompletableFuture[]::new)).join();
         sessionsParallel.clear();
+        System.out.println("After SessionsParallel.close");
 
         sessionsToTransactions.clear();
         sessionsToTransactionsParallel.clear();
         sessionsParallelToTransactionsParallel.clear();
+        System.out.println("Before Database.delete");
         client.databases().all().forEach(database -> client.databases().delete(database));
+        System.out.println("After Database.delete");
+        System.out.println("Before Client.close");
         client.close();
+        System.out.println("After Client.close");
         assertFalse(client.isOpen());
         client = null;
         System.out.println("ConnectionSteps.after");
