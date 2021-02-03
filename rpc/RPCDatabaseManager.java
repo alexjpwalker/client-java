@@ -51,7 +51,9 @@ public class RPCDatabaseManager implements GraknClient.DatabaseManager {
 
     @Override
     public void delete(String name) {
+        System.out.println("Before GraknGrpcStub.databaseDelete");
         request(() -> blockingGrpcStub.databaseDelete(DatabaseProto.Database.Delete.Req.newBuilder().setName(nonNull(name)).build()));
+        System.out.println("After GraknGrpcStub.databaseDelete");
     }
 
     @Override
